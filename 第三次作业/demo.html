@@ -1,0 +1,50 @@
+<span style="font-size:18px;"><!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+        <meta charset="utf-8"/>
+        <title>CSS Test Page</title>
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            #content{
+                background:#0CF;
+                height:200px;
+                width:200px;
+                margin-left: 20px;
+                margin-top: 20px;
+            }
+            #show{
+                width:200px;
+                height:200px;
+                margin-top: 20px;
+                background:#F09;
+                top:0px;
+                position:absolute;
+                opacity: 0;
+                display: block;
+                font-size: 12px;
+                transition: 0.3s;
+                -webkit-transition: .5s;
+                -moz-transition: .5s;
+            }
+            #content:hover #show{
+                color: #656e73;
+                opacity: 1;
+            }
+        </style>
+     
+    </head>
+    <body>
+     
+    <div id="content">
+        这是原本的div层
+        <div id="show">
+            <p>这是鼠标移动上去后的div层</p>
+        </div>
+    </div>
+     
+    </body>
+    </html>
+    </span>
