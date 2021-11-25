@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>留言板</title>
+    <style>
+      .box {
+        width: 650px;
+        height: 450px;
+        margin: 20px auto;
+        border: black solid 1px;
+        background-color: #999;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .box ul {
+        list-style: none;
+        border: black solid 1px;
+        border-radius: 5px;
+        height: 300px;
+        box-shadow: -2px -2px 3px black;
+        overflow-y: auto;
+      }
+      .box ul li {
+        height: 25px;
+        margin-right: 50%;
+        border-bottom: 1px dotted black;
+        text-align: left;
+      }
+      .time {
+        float: right;
+        color: rgb(255, 255, 255);
+        font-size: small;
+      }
+      a {
+        color: beige;
+        float: right;
+        list-style: none;
+      }
+      .name {
+        color: #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <h1>留言板</h1>
+      <span>昵称:</span>
+      <input type="text" id="name" />
+      <span>内容：</span>
+      <input type="text" id="text" />
+      <span>字体颜色：</span>
+      <select id="sel">
+        <option value="black">黑色</option>
+        <option value="red">红色</option>
+        <option value="blue">蓝色</option>
+        <option value="purple">紫色</option>
+        <option value="orange">橙色</option>
+        <option value="green">绿色</option>
+        <option value="white">白色</option>
+      </select>
+      <input type="button" value="提交" id="btn" />
+      <ul id="ul"></ul>
+    </div>
+    <script>
+      document.getElementById("btn").onclick = function () {
+        let text = document.getElementById("text").value;
+        let ul = document.getElementById("ul");
+        let name = document.getElementById("name").value;
+        if (text.length == 0) {
+          alert("您没有输入文字");
+        } else if (name.length == 0) {
+          alert("您没有输入昵称");
+        } else {
+          let li = document.createElement("li");
+          ul.appendChild(li);
+          text =
+            "<span class='name'>" +
+            name +
+            ":</span>" +
+            text +
+            "<span class='time'>" +
+            new Date().toLocaleTimeString() +
+            "</span>" +
+            "<a href='javascript:void(0)'>删除</a>";
+          li.innerHTML = text;
+          ul.lastChild.style.color = document.getElementById("sel").value;
+          document.getElementById("text").value = "";
+        }
+        let a = document.getElementsByTagName("a");
+        for (let i = 0; i < a.length; i++) {
+          a[i].onclick = function () {
+            ul.removeChild(this.parentNode);
+          };
+        }
+      };
+    </script>
+  </body>
+</html>
