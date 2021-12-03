@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .circle {
+      height: 100px;
+      width: 100px;
+      border-radius: 50px;
+    }
+    .move {
+      transform: translateX(300px);
+      transition-duration: 1s;
+    }
+  </style>
+  <body>
+    <div class="circle" style="background-color: cadetblue"></div>
+    <div class="circle" style="background-color: coral"></div>
+    <div class="circle" style="background-color: darkgray"></div>
+  </body>
+  <script>
+    let dv = document.querySelectorAll(".circle");
+    let step = (time, i) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          dv[i].classList.add("move");
+          resolve("成功");
+        }, time);
+      });
+    };
+    async function demo() {
+      let word1 = await step(0, 0);
+      let word2 = await step(1000, 1);
+      let word3 = await step(1000, 2);
+      return "函数执行完成";
+    }
+    demo().then((res) => {
+      console.log(res);
+    });
+  </script>
+</html>
