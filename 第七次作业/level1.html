@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div align="center">
+      <input type="text" id="message" />
+      <input type="button" value="发送" id="btn" />
+      <p></p>
+    </div>
+  </body>
+  <script type="module">
+    document.getElementById("btn").onclick = async function () {
+      const message = document.getElementById("message").value;
+      const formData = new FormData();
+      formData.append("message", message);
+      const res = await fetch("https://anonym.ink:8000/homework/fufubot_test/", {
+        method: "POST",
+        body: formData,
+      });
+      const text = await res.text();
+      const p = document.querySelector("p");
+      console.log(text);
+      p.textContent = text;
+    };
+  </script>
+</html>

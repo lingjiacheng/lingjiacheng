@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script type="module">
+    const header1 = new Headers();
+    header1.append(`Content-Type`, `application/json`);
+    const body = {
+      username:"admin",
+      password:"root"
+    }
+    const myJson = JSON.stringify(body)
+    console.log(myJson);
+    const res1 = await fetch("https://anonym.ink:8000/homework/auth/login", {
+      method: "POST",
+      body: myJson,
+      headers: header1,
+    });
+    const token = JSON.parse(await res1.text()).data;
+    console.log(token);
+    const header2 = new Headers();
+    header2.append(`Authorization`, `BEARER ${token}`);
+    const res2 = await fetch(
+      "https://anonym.ink:8000/homework/auth/next_level",
+      {
+        method: "GET",
+        headers: header2,
+      }
+    );
+    const text = await res2.text();
+    console.log(text);
+  </script>
+</html>
